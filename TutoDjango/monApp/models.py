@@ -7,6 +7,15 @@ class Categorie(models.Model):
     def __str__(self):
         return self.nomCat
 
+
+class Statut(models.Model):
+    idStatut = models.AutoField(primary_key=True)
+    nomStatut = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.nomStatut
+    
+
 class Produit(models.Model):
     refProd = models.AutoField(primary_key=True)
     intituleProd = models.CharField(max_length=200)
@@ -18,6 +27,14 @@ class Produit(models.Model):
         related_name="produits",
         null=True,
         blank=True
+    )
+    date_fabrication = models.DateField(null=True, blank=True) 
+    statut = models.ForeignKey(
+        Statut,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="produits"
     )
 
     def __str__(self):
@@ -31,9 +48,12 @@ class Rayon(models.Model):
         return self.nomRayon
     
 class Contenir(models.Model):
+    pk = models.CompositePrimaryKey("produit", "rayon")
     produit = models.ForeignKey(Produit, on_delete=models.CASCADE)
     rayon = models.ForeignKey(Rayon, on_delete=models.CASCADE)
-    idcont = models.AutoField(primary_key=True)
+    quantity = models.IntegerField()
+
 
     def __str__(self):
         return f"{self.produit.intituleProd} dans {self.rayon.nomRayon}"
+    
