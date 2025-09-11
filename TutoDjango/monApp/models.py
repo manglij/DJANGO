@@ -48,12 +48,13 @@ class Rayon(models.Model):
         return self.nomRayon
     
 class Contenir(models.Model):
-    pk = models.CompositePrimaryKey("produit", "rayon")
     produit = models.ForeignKey(Produit, on_delete=models.CASCADE)
     rayon = models.ForeignKey(Rayon, on_delete=models.CASCADE)
-    quantity = models.IntegerField()
+    Qte = models.PositiveIntegerField(default=0)
 
+    class Meta:
+        unique_together = ('produit', 'rayon')  # Un produit dans un rayon spécifique est unique
 
     def __str__(self):
-        return f"{self.produit.intituleProd} dans {self.rayon.nomRayon}"
+        return f"{self.produit} dans {self.rayon} (Qte: {self.Qte})"
     
