@@ -2,3 +2,6 @@
 Tout OK jusqua migration
 1er probleme a migration ! 
 - quelle que erreur de faite donc ma migration pour contenir n'ait plus 003 mais 005
+
+fin de la 5eme seance :
+Les vues : à quoi ça sert et comment ça marche (fini)
