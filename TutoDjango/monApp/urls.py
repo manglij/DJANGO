@@ -5,6 +5,7 @@ from .views.about import about
 from .views.prod import ListProduits
 from .views.prod import ListStatut
 from .views.prod import ListCategories
+from .views.prod import ListRayon
 
 
 urlpatterns = [
@@ -15,5 +16,6 @@ urlpatterns = [
     path("produit/", ListProduits, name="produit"),
     path("statut/", ListStatut, name="statut"),
     path("categorie/", ListCategories, name="categorie"),
+    path("rayon/", ListRayon, name="rayon"),
     path("accueil/<param>", accueil, name="accueil"),
 ]
