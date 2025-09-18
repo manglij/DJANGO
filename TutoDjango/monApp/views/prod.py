@@ -4,15 +4,9 @@ from monApp.models import *
 
 
 
-
 def ListProduits(request):
     prdts = Produit.objects.all()
-    table = '<ul>'
-    for produit in prdts:
-        table += '<li>'+ produit.intituleProd +'</li>'
-
-    print(table)
-    return HttpResponse(table+'</ul>')
+    return render(request, 'monApp/list_produits.html', {'prdts': prdts})
 
 
 
