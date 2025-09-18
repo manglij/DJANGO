@@ -1,9 +1,20 @@
 {% extends 'monApp/base.html' %}
+{% block menu %}
+<h1>Liste des statuts</h1>
+{% endblock %}
 {% block contenu %}
-<p>Mes {{ statuts | length }} statuts sont :</p>
-<ul>
+<table class="table">
+<thead>
+<th>Id</th>
+<th>Nom statut</th>
+</thead>
+<tbody>
 {% for statut in statuts %}
-<li>{{ statut.nomStatut }}</li>
+<tr>
+<td>{{ statut.idStatut }} </td>
+<td>{{ statut.nomStatut | upper }}</td>
+</tr>
 {% endfor %}
-</ul>
+</tbody>
+</table>
 {% endblock %}

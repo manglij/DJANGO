@@ -1,8 +1,35 @@
-<html>
+<!doctype html>
+{% load static %}
+<html lang="fr">
+
 <head>
-<title>Mon app DJANGO</title>
+    <meta charset="utf -8">
+    <title>Mon app DJANGO</title>
+    {% block styles %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}" />
+    {% load django_bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    {% endblock %}
 </head>
+
 <body>
-{% block contenu %}{% endblock %}
+    {% block nav %}
+    <nav class="navbar navbar-expand-md navbar-dark bg-primary mb-4">
+        {% block menu %}{% endblock %}
+    </nav>
+    {% endblock %}
+    <main role="main" class="container top-pushed">
+        <div class="jumbotron">
+            {% block contenu %}
+            {% endblock %}
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; Copyright {% now "Y" %} by Titof Produition Copyrigh (c)</p>
+        </div>
+    </footer>
 </body>
+
 </html>
