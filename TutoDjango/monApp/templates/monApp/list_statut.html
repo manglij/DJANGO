@@ -1,13 +1,9 @@
-<html>
-<head>
-<title>Mon app DJANGO</title>
-</head>
-<body>
+{% extends 'monApp/base.html' %}
+{% block contenu %}
 <p>Mes {{ statuts | length }} statuts sont :</p>
 <ul>
 {% for statut in statuts %}
 <li>{{ statut.nomStatut }}</li>
 {% endfor %}
 </ul>
-</body>
-</html>
+{% endblock %}

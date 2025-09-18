@@ -1,25 +1,15 @@
-<html>
-<head>
-<title>Mon app DJANGO</title>
-</head>
-<body>
-    <p>J'ai {{ categories | length }} categories.</p>
-    <p>
-J'ai
-{% if categories|length < 5 %}
-peu de
-{% elif prdts|length < 10 %}
-quelques
-{% else %}
-beaucoup de
-{% endif %}
-catégories.
-</p>
-<p>Mes catégories sont :</p>
-<ul>
-{% for cate in categories %}
-<li>{{ cate.nomCat | upper }}</li>
-{% endfor %}
-</ul>
-</body>
-</html>
+{% extends 'monApp/base.html' %}
+{% block contenu %}
+<p>J'ai {{ categories | length }} categories.</p>
+<p>
+    J'ai
+    {% if categories|length < 5 %} peu de {% elif prdts|length < 10 %} quelques {% else %} beaucoup de {% endif %}
+        catégories. </p>
+        <p>Mes catégories sont :</p>
+        <ul>
+            {% for cate in categories %}
+            <li>{{ cate.nomCat | upper }}</li>
+            {% endfor %}
+        </ul>
+        </p>
+{% endblock %}

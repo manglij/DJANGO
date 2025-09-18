@@ -1,8 +1,5 @@
-<html>
-<head>
-<title>Mon app DJANGO</title>
-</head>
-<body>
+{% extends 'monApp/base.html' %}
+{% block contenu %}
     <p>J'ai {{ prdts | length }} produits préférés.</p>
     <p>
 J'ai
@@ -21,5 +18,4 @@ produits préférés.
 <li>{{ prdt.intituleProd | upper }}</li>
 {% endfor %}
 </ul>
-</body>
-</html>
+{% endblock %}

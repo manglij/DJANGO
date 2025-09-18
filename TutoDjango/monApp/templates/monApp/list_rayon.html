@@ -1,8 +1,5 @@
-<html>
-<head>
-<title>Mon app DJANGO</title>
-</head>
-<body>
+{% extends 'monApp/base.html' %}
+{% block contenu %}
     <p>J'ai {{ rayon | length }} rayons.</p>
     <p>
 J'ai
@@ -21,5 +18,4 @@ rayons.
 <li>{{ ray.nomRayon}}</li>
 {% endfor %}
 </ul>
-</body>
-</html>
+{% endblock %}
