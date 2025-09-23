@@ -13,4 +13,5 @@ Toute les vue :
 - accueil/<param>
 
 TD seance 6 : 
+ - fait jusqu'à page n°5 (TD 3)
 
