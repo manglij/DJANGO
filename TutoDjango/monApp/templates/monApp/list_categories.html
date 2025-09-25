@@ -1,18 +1,18 @@
 {% extends 'monApp/base.html' %}
 {% block menu %}
-<h1>Liste des statuts</h1>
+{{titremenu}}
 {% endblock %}
 {% block contenu %}
 <table class="table">
 <thead>
 <th>Id</th>
-<th>Nom statut</th>
+<th>Nom catégorie</th>
 </thead>
 <tbody>
-{% for statut in statuts %}
+{% for cat in cats %}
 <tr>
-<td>{{ statut.idStatut }} </td>
-<td>{{ statut.nomStatut | upper }}</td>
+<td>{{ cat.idCat }} </td>
+<td><a href="{% url 'dtl_cat' cat.idCat %}">{{ cat.nomCat | upper }}</a></td>
 </tr>
 {% endfor %}
 </tbody>

@@ -15,9 +15,19 @@
 
 <body>
     {% block nav %}
-    <nav class="navbar navbar-expand-md navbar-dark bg-primary mb-4">
-        {% block menu %}{% endblock %}
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'produit' %}">Produits</a>
+                    <a class="nav-link" href="{% url 'rayons' %}">Rayons</a>
+                    <a class="nav-link" href="{% url 'categories' %}">Catégories</a>
+                    <a class="nav-link" href="{% url 'statuts' %}">Statuts</a>
+                </li>
+            </ul>
+        </div>
     </nav>
+    {% block menu %}{% endblock %}
     {% endblock %}
     <main role="main" class="container top-pushed">
         <div class="jumbotron">

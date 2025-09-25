@@ -1,6 +1,6 @@
 {% extends 'monApp/base.html' %}
 {% block menu %}
-<h1>Liste des produits</h1>
+{{titremenu}}
 {% endblock %}
 {% block contenu %}
 <table class="table">
@@ -16,11 +16,11 @@
 {% for prdt in prdts %}
 <tr>
 <td>{{ prdt.refProd }} </td>
-<td>{{ prdt.intituleProd }} </td>
+<td><a href="{% url 'dtl_prdt' prdt.refProd %}">{{ prdt.intituleProd }}</a></td>
 <td>{{ prdt.prixUnitaireProd }} </td>
-<td>{{ prdt.dateFabProd }} </td>
+<td>{{ prdt.date_fabrication }} </td>
 <td>{{ prdt.categorie }} </td>
-<td>{{ prdt.status }} </td>
+<td>{{ prdt.statut }} </td>
 </tr>
 {% endfor %}
 </tbody>
