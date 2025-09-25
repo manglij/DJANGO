@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from monApp.models import *
 from django.views.generic import *
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.views import LoginView
 
 
 def accueil(request,param):
@@ -140,3 +142,40 @@ class StatutDetailView(DetailView):
         context = super(StatutDetailView, self).get_context_data(**kwargs)
         context['titremenu'] = "Détail du statut"
         return context
+    
+
+class ConnectView(LoginView):
+    template_name = 'monApp/page_login.html'
+    def post(self, request, **kwargs):
+        lgn = request.POST.get('username', False)
+        pswrd = request.POST.get('password', False)
+        user = authenticate(username=lgn, password=pswrd)
+        if user is not None and user.is_active:
+            login(request, user)
+            return render(request, 'monApp/page_home.html', {'param': lgn, 'message': "You're connected"})
+        else:
+            return render(request, 'monApp/page_register.html')
+        
+
+class RegisterView(TemplateView):
+    template_name = 'monApp/page_register.html'
+
+    def post(self, request, **kwargs):
+        username = request.POST.get('username', False)
+        mail = request.POST.get('mail', False)
+        password = request.POST.get('password', False)
+        user = User.objects.create_user(username, mail, password)
+        user.save()
+        if user is not None and user.is_active:
+            return render(request, 'monApp/page_login.html')
+        else:
+            return render(request, 'monApp/page_register.html')
+        
+from django.contrib.auth import logout
+
+class DisconnectView(TemplateView):
+    template_name = 'monApp/page_logout.html'
+
+    def get(self, request, **kwargs):
+        logout(request)
+        return render(request, self.template_name)

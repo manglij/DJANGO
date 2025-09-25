@@ -15,3 +15,5 @@ Toute les vue :
 TD seance 6 : 
  - fait jusqu'à page n°5 (TD 3)
 
+TP seance 7 :
+ - fait jusqu'a page n°12 (TD 3 )

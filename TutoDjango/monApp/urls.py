@@ -20,5 +20,8 @@ urlpatterns = [
     path("accueil/<param>", accueil, name="accueil"),
     path("home/", HomeView.as_view()),
     path("home/<param>", HomeView.as_view()),
+    path('login/', ConnectView.as_view(), name='login'),
+    path('register/', RegisterView.as_view(), name='register'),
+    path('logout/', DisconnectView.as_view(), name='logout'),
 
 ]
