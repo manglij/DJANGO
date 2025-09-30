@@ -207,6 +207,20 @@ class ProduitCreateView(CreateView):
     form_class = ProduitForm
     template_name = "monApp/create_produit.html"
 
-    def form_valid(self, form):
+    def form_valid(self, form: BaseModelForm) -> HttpResponse:
         prdt = form.save()
         return redirect('dtl_prdt', prdt.refProd)
+    
+
+def ProduitUpdate(request, pk):
+    prdt = Produit.objects.get(refProd=pk)
+    if request.method == 'POST':
+        form = ProduitForm(request.POST, instance=prdt)
+        if form.is_valid():
+            # mettre à jour le produit existant dans la base de données
+            form.save()
+            # rediriger vers la page détaillée du produit que nous venons de mettre à jour
+            return redirect('dtl_prdt', prdt.refProd)
+    else:
+        form = ProduitForm(instance=prdt)
+    return render(request,'monApp/update_produit.html', {'form': form})

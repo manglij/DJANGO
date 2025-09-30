@@ -20,3 +20,6 @@ TP seance 7 :
 
 Entre seance 7-8 : 
  - finit TD3 entierement 
+
+TD seance 8 : 
+ - fait jusqu'a page n°9 (TP 3)

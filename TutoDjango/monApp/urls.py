@@ -25,5 +25,6 @@ urlpatterns = [
     path('logout/', DisconnectView.as_view(), name='logout'),
     path('envoi/', EmailSentView.as_view(), name='email-sent'),
     path("produit/",ProduitCreateView.as_view() , name="crt-prdt"),
+    path("produit/<pk>/update/",ProduitUpdate, name="prdt-chng"),
 
 ]
