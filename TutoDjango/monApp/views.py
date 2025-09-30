@@ -1,10 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from monApp.forms import ContactUsForm
 from monApp.models import *
 from django.views.generic import *
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.models import User
+from django.core.mail import send_mail
+from django.shortcuts import redirect
 
 
 def accueil(request,param):
@@ -35,19 +38,33 @@ class AboutView(TemplateView):
 
     def post(self, request, **kwargs):
         return render(request, self.template_name)
-    
 
-class ContactView(TemplateView):
-    template_name = "monApp/contact.html"
+def ContactView(request):
+    titreh1 = "Contact us !"
+    if request.method == 'POST':
+        form = ContactUsForm(request.POST)
+        if form.is_valid():
+            send_mail(
+                subject=f'Message from {form.cleaned_data["name"] or "anonyme"} via MonProjet Contact Us form',
+                message=form.cleaned_data['message'],
+                from_email=form.cleaned_data['email'],
+                recipient_list=['admin@monprojet.com'],
+            )
+
+            return redirect('email-sent')
+    else:
+        form = ContactUsForm()
+    return render(request, "monApp/page_home.html", {'titreh1': titreh1, 'form': form})
+
+class EmailSentView(TemplateView):
+    template_name = "monApp/email_sent.html"
 
     def get_context_data(self, **kwargs):
-        context = super(ContactView, self).get_context_data(**kwargs)
-        context['titreh1'] = "Contact us..."
+        context = super(EmailSentView, self).get_context_data(**kwargs)
+        context['titreh1'] = "Email sent! We'll be in touch."
         return context
 
-    def post(self, request, **kwargs):
-        return render(request, self.template_name)  
-    
+
 
 class ProduitListView(ListView):
     model = Produit
@@ -180,3 +197,5 @@ class DisconnectView(TemplateView):
     def get(self, request, **kwargs):
         logout(request)
         return render(request, self.template_name)
+    
+

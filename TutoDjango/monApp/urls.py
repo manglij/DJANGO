@@ -7,7 +7,7 @@ from django.views.generic import *
 
 urlpatterns = [
     #path("home", home, name="home-simple"),
-    path("contact_us/", ContactView.as_view(), name="contact"),
+    path("contact_us/", ContactView, name="contact"),
     path("about_us/", AboutView.as_view(), name="about"),
     path("produit/", ProduitListView.as_view(), name="produit"),
     path("produit/<pk>/",ProduitDetailView.as_view(), name="dtl_prdt"),
@@ -23,5 +23,6 @@ urlpatterns = [
     path('login/', ConnectView.as_view(), name='login'),
     path('register/', RegisterView.as_view(), name='register'),
     path('logout/', DisconnectView.as_view(), name='logout'),
+    path('envoi/', EmailSentView.as_view(), name='email-sent'),
 
 ]

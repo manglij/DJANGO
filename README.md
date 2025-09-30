@@ -17,3 +17,6 @@ TD seance 6 :
 
 TP seance 7 :
  - fait jusqu'a page n°12 (TD 3 )
+
+Entre seance 7-8 : 
+ - finit TD3 entierement 

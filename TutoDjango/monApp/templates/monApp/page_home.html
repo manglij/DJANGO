@@ -1,4 +1,12 @@
 {% extends 'monApp/base.html' %}
 {% block contenu %}
 <h1>{{ titreh1 }}</h1>
+<p>{{message}}</p>
+{% if form %}
+<form action="" method="post" novalidate>
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit" class="btn btn-success mt-2">Envoyer</button>
+</form>
+{%endif%}
 {% endblock %}
