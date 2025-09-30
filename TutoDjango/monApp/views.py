@@ -8,6 +8,8 @@ from django.contrib.auth.views import LoginView
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
 from django.shortcuts import redirect
+from django.forms.models import BaseModelForm
+
 
 
 def accueil(request,param):
@@ -199,12 +201,12 @@ class DisconnectView(TemplateView):
         return render(request, self.template_name)
     
 
-def ProduitCreate(request):
-    if request.method == 'POST':
-        form = ProduitForm(request.POST)
-        if form.is_valid():
-            prdt = form.save()
-            return redirect('dtl_prdt', prdt.refProd)
-    else:
-        form = ProduitForm()
-    return render(request, "monApp/create_produit.html", {'form': form})
+
+class ProduitCreateView(CreateView):
+    model = Produit
+    form_class = ProduitForm
+    template_name = "monApp/create_produit.html"
+
+    def form_valid(self, form):
+        prdt = form.save()
+        return redirect('dtl_prdt', prdt.refProd)

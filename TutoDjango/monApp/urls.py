@@ -24,6 +24,6 @@ urlpatterns = [
     path('register/', RegisterView.as_view(), name='register'),
     path('logout/', DisconnectView.as_view(), name='logout'),
     path('envoi/', EmailSentView.as_view(), name='email-sent'),
-    path("produit/",ProduitCreate , name="crt-prdt"),
+    path("produit/",ProduitCreateView.as_view() , name="crt-prdt"),
 
 ]
