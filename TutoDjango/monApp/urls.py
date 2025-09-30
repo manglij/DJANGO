@@ -9,8 +9,8 @@ urlpatterns = [
     #path("home", home, name="home-simple"),
     path("contact_us/", ContactView, name="contact"),
     path("about_us/", AboutView.as_view(), name="about"),
-    path("produit/", ProduitListView.as_view(), name="produit"),
-    path("produit/<pk>/",ProduitDetailView.as_view(), name="dtl_prdt"),
+    path("produits/", ProduitListView.as_view(), name="produit"),
+    path("produits/<pk>/",ProduitDetailView.as_view(), name="dtl_prdt"),
     path("statuts/", StatutListView.as_view(), name="statuts"),
     path("statuts/<pk>/", StatutDetailView.as_view(), name="dtl_statut"),
     path("categories/", CategorieListView.as_view(), name="categories"),
@@ -24,5 +24,6 @@ urlpatterns = [
     path('register/', RegisterView.as_view(), name='register'),
     path('logout/', DisconnectView.as_view(), name='logout'),
     path('envoi/', EmailSentView.as_view(), name='email-sent'),
+    path("produit/",ProduitCreate , name="crt-prdt"),
 
 ]
