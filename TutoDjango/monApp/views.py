@@ -4,6 +4,7 @@ from monApp.models import *
 from django.views.generic import *
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.views import LoginView
+from django.contrib.auth.models import User
 
 
 def accueil(request,param):
@@ -16,7 +17,7 @@ class HomeView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(HomeView, self).get_context_data(**kwargs)
-        context['titreh1'] = "Welcome to Django! " + self.kwargs.get('param')
+        context['titreh1'] = "Welcome to Django! " + self.kwargs.get('param', '')
         return context
     
     def post(self, request, **kwargs):
