@@ -31,7 +31,7 @@ class Produit(models.Model):
     date_fabrication = models.DateField(null=True, blank=True) 
     statut = models.ForeignKey(
         Statut,
-        on_delete=models.SET_NULL,
+        on_delete=models.CASCADE,
         null=True,
         blank=True,
         related_name="produits"

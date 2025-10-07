@@ -9,6 +9,7 @@ from django.contrib.auth.models import User
 from django.core.mail import send_mail
 from django.shortcuts import redirect
 from django.forms.models import BaseModelForm
+from django.db.models import Count
 
 
 
@@ -101,6 +102,10 @@ class CategorieListView(ListView):
     def get_queryset(self ) :
         return Categorie.objects.order_by("nomCat")
     
+    def get_queryset(self):
+        # Annoter chaque catégorie avec le nombre de produits liés
+        return Categorie.objects.annotate(nb_produits=Count('produits'))
+
     def get_context_data(self, **kwargs):
         context = super(CategorieListView, self).get_context_data(**kwargs)
         context['titremenu'] = "Liste de mes catégories"
@@ -111,9 +116,14 @@ class CategorieDetailView(DetailView):
     template_name = "monApp/detail_categorie.html"
     context_object_name = "cat"
 
+    def get_queryset(self):
+        # Annoter chaque catégorie avec le nombre de produits liés
+        return Categorie.objects.annotate(nb_produits=Count('produits'))
+
     def get_context_data(self, **kwargs):
         context = super(CategorieDetailView, self).get_context_data(**kwargs)
         context['titremenu'] = "Détail de la catégorie"
+        context['prdts'] = self.object.produits.all()
         return context
     
 
@@ -148,6 +158,11 @@ class StatutListView(ListView):
     def get_queryset(self ) :
         return Statut.objects.order_by("nomStatut")
     
+    def get_queryset(self):
+        # Annoter chaque catégorie avec le nombre de produits liés
+        return Statut.objects.annotate(nb_produits=Count('produits'))
+
+    
     def get_context_data(self, **kwargs):
         context = super(StatutListView, self).get_context_data(**kwargs)
         context['titremenu'] = "Liste de mes statuts"
@@ -158,9 +173,16 @@ class StatutDetailView(DetailView):
     template_name = "monApp/detail_statut.html"
     context_object_name = "stat"
 
+
+    def get_queryset(self):
+        # Annoter chaque catégorie avec le nombre de produits liés
+        return Statut.objects.annotate(nb_produits=Count('produits'))
+
+
     def get_context_data(self, **kwargs):
         context = super(StatutDetailView, self).get_context_data(**kwargs)
         context['titremenu'] = "Détail du statut"
+        context['prdts'] = self.object.produits.all()
         return context
     
 

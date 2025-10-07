@@ -4,20 +4,22 @@
 {% endblock %}
 {% block contenu %}
 <table class="table">
-<thead>
-<th>Id</th>
-<th>Nom statut</th>
-</thead>
-<tbody>
-{% for statut in stats %}
-<tr>
-<td>{{ statut.idStatut }} </td>
-<td><a href="{% url 'dtl_statut' statut.idStatut %}">{{ statut.nomStatut }}</a></td>
-<td><a href="{% url 'statut-chng' statut.idStatut %}">Modifier</a></td>
-<td><a href="{% url 'statut-del' statut.idStatut %}">Supprimer</a></td>
-</tr>
-{% endfor %}
-</tbody>
+    <thead>
+        <th>Id</th>
+        <th>Nom statut</th>
+        <th>Nombre de Produits</th>
+    </thead>
+    <tbody>
+        {% for statut in stats %}
+        <tr>
+            <td>{{ statut.idStatut }} </td>
+            <td><a href="{% url 'dtl_statut' statut.idStatut %}">{{ statut.nomStatut }}</a></td>
+            <td>{{ statut.nb_produits }} </td>
+            <td><a href="{% url 'statut-chng' statut.idStatut %}">Modifier</a></td>
+            <td><a href="{% url 'statut-del' statut.idStatut %}">Supprimer</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
 </table>
 <a href="{% url 'crt-statut' %}">Créer un nouveau statut</a>
 

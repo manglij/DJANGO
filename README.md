@@ -26,3 +26,6 @@ TD seance 8 :
 
 TP seance 8 : 
  - fin TP 3
+
+TD seance 9 : 
+ - fin jusqu'a page n°4 (TD 4 )

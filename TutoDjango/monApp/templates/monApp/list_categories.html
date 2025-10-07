@@ -4,20 +4,22 @@
 {% endblock %}
 {% block contenu %}
 <table class="table">
-<thead>
-<th>Id</th>
-<th>Nom catégorie</th>
-</thead>
-<tbody>
-{% for cat in cats %}
-<tr>
-<td>{{ cat.idCat }} </td>
-<td><a href="{% url 'dtl_cat' cat.idCat %}">{{ cat.nomCat | upper }}</a></td>
-<td><a href="{% url 'cat-chng' cat.idCat %}">Modifier</a></td>
-<td><a href="{% url 'cat-del' cat.idCat %}">Supprimer</a></td>
-</tr>
-{% endfor %}
-</tbody>
+    <thead>
+        <th>Id</th>
+        <th>Nom catégorie</th>
+        <th>Nombre de Produits</th>
+    </thead>
+    <tbody>
+        {% for cat in cats %}
+        <tr>
+            <td>{{ cat.idCat }} </td>
+            <td><a href="{% url 'dtl_cat' cat.idCat %}">{{ cat.nomCat | upper }}</a></td>
+            <td>{{ cat.nb_produits }} </td>
+            <td><a href="{% url 'cat-chng' cat.idCat %}">Modifier</a></td>
+            <td><a href="{% url 'cat-del' cat.idCat %}">Supprimer</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
 </table>
 <a href="{% url 'crt-cat' %}">Créer une nouvelle catégorie</a>
 

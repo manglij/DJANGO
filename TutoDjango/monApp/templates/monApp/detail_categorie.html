@@ -1,14 +1,45 @@
 {% extends 'monApp/base.html' %}
-{% block menu %}
-<h1>{{titremenu}}</h1>
-{% endblock %}
 {% block contenu %}
-<h2>{{ cat.nomCat }}</h2>
-<a href="{% url 'categories' %}">Retour à la liste des catégories</a>
-<ul>
-    <li>Id catégorie : {{ cat.idCat }} </li>
-    <li>Nom catégorie : {{ cat.nomCat }} </li>
-</ul>
-<a href="{% url 'cat-chng' cat.idCat %}">modifier</a>
-<a href="{% url 'cat-del' cat.idCat %}">supprimer</a>
+<div class="card mb-4">
+    <div class="card-header bg-primary text-white">
+        <h4>Détail de la catégorie</h4>
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">{{ cat.nomCat }}</h5>
+        <ul class="list-unstyled">
+            <li><strong>Référence :</strong> {{ cat.idCat }}</li>
+            <li><strong>Nom catégorie :</strong> {{ cat.nomCat }}</li>
+        </ul>
+        <div class="card-footer text-center">
+            <a href="{% url 'cat-chng' cat.idCat %}" class="btn btn-warning mt-2">Modifier</a>
+            <a href="{% url 'dtl_cat' cat.idCat %}" class="btn btn-danger mt-2">Supprimer</a>
+            <a href="{% url 'categories' %}" class="btn btn-info mt-2">Retour</a>
+        </div>
+    </div>
+</div>
+<div class="card mb-4">
+    <div class="card-header bg-primary text-white">
+        <h4>Cette catégorie contient <strong>{{ cat.nb_produits }}</strong> produit(s)</h4>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            {% if prdts %}
+            {% for prdt in prdts %}
+            <div class="col-sm-3">
+                <div class="card mb-2 text-center">
+                    <div class="card-header bg-info text-white">
+                        <h5 class="card-title">{{ prdt.intituleProd }}</h5>
+                    </div>
+                    <div class="card-body">
+                        <a href="{% url 'dtl_prdt' prdt.refProd %}" class="btn btn-primary mt-2">Détails</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+            <p class="text-muted">Aucun produit trouvé pour cette catégorie.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
 {% endblock %}
