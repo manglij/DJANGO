@@ -13,8 +13,12 @@
 <tr>
 <td>{{ cat.idCat }} </td>
 <td><a href="{% url 'dtl_cat' cat.idCat %}">{{ cat.nomCat | upper }}</a></td>
+<td><a href="{% url 'cat-chng' cat.idCat %}">Modifier</a></td>
+<td><a href="{% url 'cat-del' cat.idCat %}">Supprimer</a></td>
 </tr>
 {% endfor %}
 </tbody>
 </table>
+<a href="{% url 'crt-cat' %}">Créer une nouvelle catégorie</a>
+
 {% endblock %}

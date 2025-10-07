@@ -13,4 +13,5 @@
     <li>Statut : {{ prdt.statut }}</li>
 </ul>
 <a href="{% url 'prdt-chng' prdt.refProd %}">modifier</a>
+<a href="{% url 'prdt-del' prdt.refProd %}">supprimer</a>
 {% endblock %}

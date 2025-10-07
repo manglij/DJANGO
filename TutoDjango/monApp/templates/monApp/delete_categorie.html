@@ -1,0 +1,8 @@
+{% extends 'monApp/base.html' %}
+{% block contenu %}
+<form action="" method="post">
+    {% csrf_token %}
+    <p>Êtes-vous sûr de vouloir supprimer la catégorie "{{ object.nomCat }}" ?</p>
+    <button type="submit" class="btn btn-danger mt-2">Supprimer</button>
+    <a href="{% url 'categories' %}" class="btn btn-secondary mt-2">Annuler</a>
+{% endblock %}

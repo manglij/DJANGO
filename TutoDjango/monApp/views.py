@@ -224,3 +224,112 @@ def ProduitUpdate(request, pk):
     else:
         form = ProduitForm(instance=prdt)
     return render(request,'monApp/update_produit.html', {'form': form})
+
+class ProduitDeleteView(DeleteView):
+    model = Produit
+    template_name = "monApp/delete_produit.html"
+    success_url = "/monApp/produits/"
+
+    def get_context_data(self, **kwargs):
+        context = super(ProduitDeleteView, self).get_context_data(**kwargs)
+        context['titremenu'] = "Suppression du produit"
+        return context
+    
+
+class RayonCreateView(CreateView):
+    model = Rayon
+    form_class = RayonForm
+    template_name = "monApp/create_rayon.html"
+
+    def form_valid(self, form: BaseModelForm) -> HttpResponse:
+        rayon = form.save()
+        return redirect('dtl_rayons', rayon.idRayon)
+
+class CategorieCreateView(CreateView):
+    model = Categorie
+    form_class = CategorieForm
+    template_name = "monApp/create_categorie.html"
+
+    def form_valid(self, form: BaseModelForm) -> HttpResponse:
+        categorie = form.save()
+        return redirect('dtl_cat', categorie.idCat)
+
+class StatutCreateView(CreateView):
+    model = Statut
+    form_class = StatutForm
+    template_name = "monApp/create_statut.html"
+
+    def form_valid(self, form: BaseModelForm) -> HttpResponse:
+        statut = form.save()
+        return redirect('dtl_statut', statut.idStatut)
+    
+def CategorieUpdate(request, pk):
+    cat = Categorie.objects.get(idCat=pk)
+    if request.method == 'POST':
+        form = CategorieForm(request.POST, instance=cat)
+        if form.is_valid():
+            # mettre à jour la catégorie existante dans la base de données
+            form.save()
+            # rediriger vers la page détaillée de la catégorie que nous venons de mettre à jour
+            return redirect('dtl_cat', cat.idCat)
+    else:
+        form = CategorieForm(instance=cat)
+    return render(request,'monApp/update_categorie.html', {'form': form})
+
+def RayonUpdate(request, pk):
+    ray = Rayon.objects.get(idRayon=pk)
+    if request.method == 'POST':
+        form = RayonForm(request.POST, instance=ray)
+        if form.is_valid():
+            # mettre à jour le rayon existant dans la base de données
+            form.save()
+            # rediriger vers la page détaillée du rayon que nous venons de mettre à jour
+            return redirect('dtl_rayons', ray.idRayon)
+    else:
+        form = RayonForm(instance=ray)
+    return render(request,'monApp/update_rayon.html', {'form': form})
+
+def StatutUpdate(request, pk):
+    stat = Statut.objects.get(idStatut=pk)
+    if request.method == 'POST':
+        form = StatutForm(request.POST, instance=stat)
+        if form.is_valid():
+            # mettre à jour le statut existant dans la base de données
+            form.save()
+            # rediriger vers la page détaillée du statut que nous venons de mettre à jour
+            return redirect('dtl_statut', stat.idStatut)
+    else:
+        form = StatutForm(instance=stat)
+    return render(request,'monApp/update_statut.html', {'form': form})
+
+class CategorieDeleteView(DeleteView):
+    model = Categorie
+    template_name = "monApp/delete_categorie.html"
+    success_url = "/monApp/categories/"
+
+    def get_context_data(self, **kwargs):
+        context = super(CategorieDeleteView, self).get_context_data(**kwargs)
+        context['titremenu'] = "Suppression de la catégorie"
+        return context
+    
+
+class RayonDeleteView(DeleteView):
+    model = Rayon
+    template_name = "monApp/delete_rayon.html"
+    success_url = "/monApp/rayons/"
+
+    def get_context_data(self, **kwargs):
+        context = super(RayonDeleteView, self).get_context_data(**kwargs)
+        context['titremenu'] = "Suppression du rayon"
+        return context
+
+class StatutDeleteView(DeleteView):
+    model = Statut
+    template_name = "monApp/delete_statut.html"
+    success_url = "/monApp/statuts/"
+
+    def get_context_data(self, **kwargs):
+        context = super(StatutDeleteView, self).get_context_data(**kwargs)
+        context['titremenu'] = "Suppression du statut"
+        return context
+    

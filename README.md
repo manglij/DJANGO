@@ -23,3 +23,6 @@ Entre seance 7-8 :
 
 TD seance 8 : 
  - fait jusqu'a page n°9 (TP 3)
+
+TP seance 8 : 
+ - fin TP 3

@@ -10,4 +10,6 @@
     <li>Id statut : {{stat.idStatut }} </li>
     <li>Nom statut : {{ stat.nomStatut }} </li>
 </ul>
+<a href="{% url 'statut-chng' stat.idStatut %}">modifier</a>
+<a href="{% url 'statut-del' stat.idStatut %}">supprimer</a>
 {% endblock %}

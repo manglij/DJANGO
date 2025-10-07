@@ -1,0 +1,8 @@
+{% extends 'monApp/base.html' %}
+{% block contenu %}
+<form action="" method="post">
+    {% csrf_token %}
+    <p>Êtes-vous sûr de vouloir supprimer le statut "{{ object.nomStatut }}" ?</p>
+    <button type="submit" class="btn btn-danger mt-2">Supprimer</button>
+    <a href="{% url 'statuts' %}" class="btn btn-secondary mt-2">Annuler</a>
+{% endblock %}

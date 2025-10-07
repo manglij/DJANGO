@@ -9,4 +9,6 @@
     <li>Id catégorie : {{ cat.idCat }} </li>
     <li>Nom catégorie : {{ cat.nomCat }} </li>
 </ul>
+<a href="{% url 'cat-chng' cat.idCat %}">modifier</a>
+<a href="{% url 'cat-del' cat.idCat %}">supprimer</a>
 {% endblock %}

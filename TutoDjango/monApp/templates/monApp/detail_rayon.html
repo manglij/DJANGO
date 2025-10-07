@@ -9,4 +9,6 @@
     <li>Id rayon : {{ray.idRayon }} </li>
     <li>Nom du rayon : {{ ray.nomRayon }} </li>
 </ul>
+<a href="{% url 'rayon-chng' ray.idRayon %}">modifier</a>
+<a href="{% url 'rayon-del' ray.idRayon %}">supprimer</a>
 {% endblock %}

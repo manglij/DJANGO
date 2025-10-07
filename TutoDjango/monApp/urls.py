@@ -26,5 +26,14 @@ urlpatterns = [
     path('envoi/', EmailSentView.as_view(), name='email-sent'),
     path("produit/",ProduitCreateView.as_view() , name="crt-prdt"),
     path("produit/<pk>/update/",ProduitUpdate, name="prdt-chng"),
-
+    path("produit/<pk>/delete/",ProduitDeleteView.as_view(), name="prdt-del"),
+    path("categorie/",CategorieCreateView.as_view() , name="crt-cat"),
+    path("categorie/<pk>/update/",CategorieUpdate, name="cat-chng"),
+    path("categorie/<pk>/delete/",CategorieDeleteView.as_view(), name="cat-del"),
+    path("rayon/",RayonCreateView.as_view() , name="crt-rayon"),
+    path("rayon/<pk>/update/",RayonUpdate, name="rayon-chng"),
+    path("rayon/<pk>/delete/",RayonDeleteView.as_view(), name="rayon-del"),
+    path("statut/",StatutCreateView.as_view() , name="crt-statut"),
+    path("statut/<pk>/update/",StatutUpdate, name="statut-chng"),
+    path("statut/<pk>/delete/",StatutDeleteView.as_view(), name="statut-del"),
 ]

@@ -13,8 +13,12 @@
 <tr>
 <td>{{ statut.idStatut }} </td>
 <td><a href="{% url 'dtl_statut' statut.idStatut %}">{{ statut.nomStatut }}</a></td>
+<td><a href="{% url 'statut-chng' statut.idStatut %}">Modifier</a></td>
+<td><a href="{% url 'statut-del' statut.idStatut %}">Supprimer</a></td>
 </tr>
 {% endfor %}
 </tbody>
 </table>
+<a href="{% url 'crt-statut' %}">Créer un nouveau statut</a>
+
 {% endblock %}
