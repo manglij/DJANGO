@@ -138,6 +138,14 @@ class RayonListView(ListView):
     def get_context_data(self, **kwargs):
         context = super(RayonListView, self).get_context_data(**kwargs)
         context['titremenu'] = "Liste de mes rayons"
+        rays_dt = []
+        for rayon in context['rays']:
+            total = 0
+            for contenir in rayon.contenir_rayon.all():
+                total += contenir.produit.prixUnitaireProd * contenir.quantite
+            rays_dt.append({'rayon': rayon, 'total_stock': total})
+        context['rays_dt'] = rays_dt
+        print(rays_dt)
         return context
 
 class RayonDetailView(DetailView):

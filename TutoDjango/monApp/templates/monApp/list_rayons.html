@@ -4,20 +4,25 @@
 {% endblock %}
 {% block contenu %}
 <table class="table">
-<thead>
-<th>Id</th>
-<th>Nom rayon</th>
-</thead>
-<tbody>
-{% for ray in rays %}
-<tr>
-<td>{{ ray.idRayon }} </td>
-<td><a href="{% url 'dtl_rayons' ray.idRayon %}">{{ ray.nomRayon | upper }}</a></td>
-<td><a href="{% url 'rayon-chng' ray.idRayon %}">Modifier</a></td>
-<td><a href="{% url 'rayon-del' ray.idRayon %}">Supprimer</a></td>
-</tr>
-{% endfor %}
-</tbody>
+    <thead>
+        <th>Id</th>
+        <th>Nom rayon</th>
+        <th>Valeur marchande du rayon</th>
+    </thead>
+    <tbody>
+        {% for data in rays_dt %}
+        <tr>
+            <td><a href="{% url 'dtl_rayons' data.rayon.pk %}">{{ data.rayon.pk }}</a></td>
+            <td>{{ data.rayon.nomRayon }} </td>
+            <td>{{ data.total_stock }} €</td>
+            <td>
+                <a href="{% url 'dtl_rayons' data.rayon.pk %}" class="btn btn-primary mt-2">Détails</a>
+                <a href="{% url 'rayon-chng' data.rayon.pk %}" class="btn btn-warning mt-2">Modifier</a>
+                <a href="{% url 'dtl_rayons' data.rayon.pk %}" class="btn btn-danger mt-2">Supprimer</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
 </table>
 <a href="{% url 'crt-rayon' %}">Créer un nouveau rayon</a>
 {% endblock %}

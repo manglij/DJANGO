@@ -51,11 +51,13 @@ class Contenir(models.Model):
     pk = models.CompositePrimaryKey("produit", "rayon")
     produit = models.ForeignKey(
         Produit,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        related_name='contenir_rayon'
     )
     rayon = models.ForeignKey(
         Rayon,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        related_name='contenir_rayon'
     )
     quantite = models.PositiveIntegerField()
 

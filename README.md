@@ -29,3 +29,6 @@ TP seance 8 :
 
 TD seance 9 : 
  - fin jusqu'a page n°4 (TD 4 )
+
+TD seance 10 :
+ - réussi a afficher le prix total d'un rayon 
