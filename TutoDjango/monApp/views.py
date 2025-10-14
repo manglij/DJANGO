@@ -411,6 +411,10 @@ class ContenirCreateView(CreateView):
     template_name = "monApp/create_contenir.html"
 
     def form_valid(self, form: BaseModelForm) -> HttpResponse:
+        form.instance.rayon = Rayon.objects.get(idRayon=self.kwargs['pk'])
+        if quantite := form.cleaned_data.get('quantite', 0) < 1:
+            form.add_error('quantite', 'La quantité doit être au moins de 1.')
+            return self.form_invalid(form)
         contenir = form.save()
         return redirect('dtl_rayons', contenir.rayon.idRayon)
     
