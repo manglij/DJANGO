@@ -3,40 +3,40 @@
 {{titremenu}}
 {% endblock %}
 {% block contenu %}
+<!-- Barre de recherche -->
+<p class="lead mb-3 ml-0">Rechercher un élément...</p>
+<form method="GET" action="">
+<input class="form-control" type="text" name="search" placeholder="Tapez ici votre recherche"
+value="{{ request.GET.search }}">
+<button type="submit" class="btn btn-success mt-2">Rechercher</button>
+</form>
 <table class="table">
-<thead>
-<th>Id</th>
-<th>Nom produit</th>
-<th>Prix unitaire</th>
-<th>Date fabrication</th>
-<th>Catégorie</th>
-<th>Statut</th>
-</thead>
-<tbody>
-{% for prdt in prdts %}
-<tr>
-<td>{{ prdt.refProd }} </td>
-<td><a href="{% url 'dtl_prdt' prdt.refProd %}">{{ prdt.intituleProd }}</a></td>
-<td>{{ prdt.prixUnitaireProd }} </td>
-<td>{{ prdt.date_fabrication }} </td>
-<td>{{ prdt.categorie }} </td>
-<td>{{ prdt.statut }} </td>
-<td><a href="{% url 'prdt-chng' prdt.refProd %}">modifier</a>
-</td>
-</tr>
-{% endfor %}
-</tbody>
+    <thead>
+        <th>Id</th>
+        <th>Nom produit</th>
+        <th>Prix unitaire</th>
+        <th>Date fabrication</th>
+        <th>Catégorie</th>
+        <th>Statut</th>
+    </thead>
+    <tbody>
+        {% for prdt in prdts %}
+        <tr>
+            <td>{{ prdt.refProd }} </td>
+            <td><a href="{% url 'dtl_prdt' prdt.refProd %}">{{ prdt.intituleProd }}</a></td>
+            <td>{{ prdt.prixUnitaireProd }} </td>
+            <td>{{ prdt.date_fabrication }} </td>
+            <td>{{ prdt.categorie }} </td>
+            <td>{{ prdt.statut }} </td>
+            <td><a href="{% url 'prdt-chng' prdt.refProd %}">modifier</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
 </table>
 <a href="{% url 'crt-prdt' %}">Créer un nouveau produit</a>
 <p>
-J'ai
-{% if prdts|length < 5 %}
-peu de
-{% elif prdts|length < 10 %}
-quelques
-{% else %}
-beaucoup de
-{% endif %}
-produits préférés.
-</p>
-{% endblock %}
+    J'ai
+    {% if prdts|length < 5 %} peu de {% elif prdts|length < 10 %} quelques {% else %} beaucoup de {% endif %} produits
+        préférés. </p>
+        {% endblock %}
