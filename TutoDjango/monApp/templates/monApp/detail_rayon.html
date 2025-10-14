@@ -23,6 +23,7 @@
             <strong>{{total_rayon|floatformat:2 }} € </strong>
         </h4>
     </div>
+    <a href="{% url 'cntnr-crt' ray.idRayon %}" class="btn btn-success">Ajouter un produit </a>
     <div class="card-body">
         <div class="row">
             {% if prdts_dt %}

@@ -33,3 +33,11 @@ class StatutForm(forms.ModelForm):
 	class Meta:
 		model = Statut
 		fields = '__all__'
+
+class ContenirForm(forms.ModelForm):
+	class Meta:
+		model = Contenir
+		quantite = forms.IntegerField(min_value=1)
+		produit = forms.ModelChoiceField(queryset=Produit.objects.all())
+		fields = ['produit', 'quantite']
+		exclude = ('rayon',)

@@ -1,0 +1,10 @@
+{% extends 'monApp/base.html' %}
+{% block contenu %}
+<h1> Création d'une nouvelle catégorie </h1>
+<form method="post">
+{% csrf_token %}
+{{ form.as_p }}
+<button type="submit" class="btn btn-success">Valider</button>
+<a href="{% url 'dtl_rayons' ray.idRayon %}" class="btn btn-info">Retour</a>
+</form>
+{% endblock %}

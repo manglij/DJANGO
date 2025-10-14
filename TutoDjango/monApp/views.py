@@ -405,3 +405,16 @@ class StatutDeleteView(DeleteView):
         context['titremenu'] = "Suppression du statut"
         return context
     
+class ContenirCreateView(CreateView):
+    model = Contenir
+    form_class = ContenirForm
+    template_name = "monApp/create_contenir.html"
+
+    def form_valid(self, form: BaseModelForm) -> HttpResponse:
+        contenir = form.save()
+        return redirect('dtl_rayons', contenir.rayon.idRayon)
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['ray'] = Rayon.objects.get(idRayon=self.kwargs['pk'])
+        return context
