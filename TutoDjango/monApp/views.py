@@ -14,7 +14,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.views.generic import TemplateView
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404 
 
 
 
@@ -284,7 +284,7 @@ class ProduitCreateView(CreateView):
     
 @login_required
 def ProduitUpdate(request, pk):
-    prdt = Produit.objects.get(refProd=pk)
+    prdt = get_object_or_404(Produit, refProd=pk)
     if request.method == 'POST':
         form = ProduitForm(request.POST, instance=prdt)
         if form.is_valid():
@@ -335,7 +335,7 @@ class StatutCreateView(CreateView):
         return redirect('dtl_statut', statut.idStatut)
 @login_required
 def CategorieUpdate(request, pk):
-    cat = Categorie.objects.get(idCat=pk)
+    cat = get_object_or_404(Categorie, idCat=pk)
     if request.method == 'POST':
         form = CategorieForm(request.POST, instance=cat)
         if form.is_valid():
@@ -348,7 +348,7 @@ def CategorieUpdate(request, pk):
     return render(request,'monApp/update_categorie.html', {'form': form})
 @login_required
 def RayonUpdate(request, pk):
-    ray = Rayon.objects.get(idRayon=pk)
+    ray = get_object_or_404(Rayon, idRayon=pk)
     if request.method == 'POST':
         form = RayonForm(request.POST, instance=ray)
         if form.is_valid():
@@ -430,7 +430,7 @@ class ContenirCreateView(CreateView):
     
 @login_required
 def ContenirUpdate(request, pk_R, pk_P):
-    contenir = Contenir.objects.get(rayon_id=pk_R, produit_id=pk_P)
+    contenir = get_object_or_404(Contenir, rayon_id=pk_R, produit_id=pk_P)
     if request.method == 'POST':
         form = ContenirUpdateForm(request.POST, instance=contenir)
         if form.is_valid():

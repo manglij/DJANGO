@@ -35,4 +35,7 @@ TD seance 10 :
 
 TP seance 11 : 
  - possibilite de changer le nombre d'objet dans un rayon (suppr si > 0) + ajouter objet dans un rayon 
+
+Chez moi :
+ - fin des tests : 91% de coverage 
  
