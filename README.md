@@ -32,3 +32,7 @@ TD seance 9 :
 
 TD seance 10 :
  - réussi a afficher le prix total d'un rayon 
+
+TP seance 11 : 
+ - possibilite de changer le nombre d'objet dans un rayon (suppr si > 0) + ajouter objet dans un rayon 
+ 

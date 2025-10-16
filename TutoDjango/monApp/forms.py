@@ -41,3 +41,9 @@ class ContenirForm(forms.ModelForm):
 		produit = forms.ModelChoiceField(queryset=Produit.objects.all())
 		fields = ['produit', 'quantite']
 		exclude = ('rayon',)
+
+class ContenirUpdateForm(forms.ModelForm):
+	class Meta:
+		model = Contenir
+		quantite = forms.IntegerField(min_value=1)
+		fields = ['quantite']

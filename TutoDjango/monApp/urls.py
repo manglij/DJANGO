@@ -36,5 +36,6 @@ urlpatterns = [
     path("statut/",StatutCreateView.as_view() , name="crt-statut"),
     path("statut/<pk>/update/",StatutUpdate, name="statut-chng"),
     path("statut/<pk>/delete/",StatutDeleteView.as_view(), name="statut-del"),
-    path('rayon/<pk>/cntnr', ContenirCreateView.as_view(), name='cntnr-crt')
+    path('rayon/<pk>/cntnr', ContenirCreateView.as_view(), name='cntnr-crt'),
+    path('rayon/<pk_R>/<pk_P>/update/', ContenirUpdate, name='cntnr-chng'),
 ]

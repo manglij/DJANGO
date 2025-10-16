@@ -415,10 +415,34 @@ class ContenirCreateView(CreateView):
         if quantite := form.cleaned_data.get('quantite', 0) < 1:
             form.add_error('quantite', 'La quantité doit être au moins de 1.')
             return self.form_invalid(form)
+        id_prdt = form.cleaned_data.get('produit', None).refProd
+        if form.cleaned_data.get('produit', None) == form.instance.rayon.contenir_rayon.get(produit_id=id_prdt).produit if form.instance.rayon.contenir_rayon.filter(produit_id=id_prdt).exists() else None:
+            form.add_error('produit', 'Vous ne pouvez pas ajouter deux fois le même produit dans un même rayon.')
+            return self.form_invalid(form)
         contenir = form.save()
+
         return redirect('dtl_rayons', contenir.rayon.idRayon)
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['ray'] = Rayon.objects.get(idRayon=self.kwargs['pk'])
         return context
+
+def ContenirUpdate(request, pk_R, pk_P):
+    contenir = Contenir.objects.get(rayon_id=pk_R, produit_id=pk_P)
+    if request.method == 'POST':
+        form = ContenirUpdateForm(request.POST, instance=contenir)
+        if form.is_valid():
+            print(form.data)
+            if quantite := form.cleaned_data.get('quantite', 0) == 0:
+                contenir.delete()
+                return redirect('dtl_rayons', pk_R)
+            # mettre à jour le contenir existant dans la base de données
+            form.save()
+            # rediriger vers la page détaillée du rayon parent que nous venons de mettre à jour
+            return redirect('dtl_rayons', contenir.rayon.idRayon)
+    else:
+        form = ContenirUpdateForm(instance=contenir)
+    return render(request,'monApp/update_contenir.html', {'form': form})
+
+
