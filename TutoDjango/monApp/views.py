@@ -404,7 +404,7 @@ class StatutDeleteView(DeleteView):
         context = super(StatutDeleteView, self).get_context_data(**kwargs)
         context['titremenu'] = "Suppression du statut"
         return context
-    
+@method_decorator(login_required, name='dispatch')
 class ContenirCreateView(CreateView):
     model = Contenir
     form_class = ContenirForm
@@ -427,7 +427,8 @@ class ContenirCreateView(CreateView):
         context = super().get_context_data(**kwargs)
         context['ray'] = Rayon.objects.get(idRayon=self.kwargs['pk'])
         return context
-
+    
+@login_required
 def ContenirUpdate(request, pk_R, pk_P):
     contenir = Contenir.objects.get(rayon_id=pk_R, produit_id=pk_P)
     if request.method == 'POST':
